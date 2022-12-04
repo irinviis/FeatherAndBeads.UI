@@ -62,40 +62,46 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "featherandbeads-ui:build:production"
+          "options": {
+            "sslCert": "./ssl/server.crt",
+            "sslKey": "./ssl/server.key",
+            "ssl": true,
+            "browserTarget": "DatingAppAngular:build"
+          },
+            "configurations": {
+              "production": {
+                "browserTarget": "featherandbeads-ui:build:production"
+              },
+              "development": {
+                "browserTarget": "featherandbeads-ui:build:development"
+              }
             },
-            "development": {
-              "browserTarget": "featherandbeads-ui:build:development"
+            "defaultConfiguration": "development"
+          },
+          "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "featherandbeads-ui:build"
             }
           },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "featherandbeads-ui:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+          "test": {
+            "builder": "@angular-devkit/build-angular:karma",
+            "options": {
+              "main": "src/test.ts",
+              "polyfills": "src/polyfills.ts",
+              "tsConfig": "tsconfig.spec.json",
+              "karmaConfig": "karma.conf.js",
+              "assets": [
+                "src/favicon.ico",
+                "src/assets"
+              ],
+              "styles": [
+                "src/styles.css"
+              ],
+              "scripts": []
+            }
           }
         }
-      }
     }
   },
   "cli": {
