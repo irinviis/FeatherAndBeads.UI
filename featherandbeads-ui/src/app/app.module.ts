@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,9 @@ import { AdminAccountComponent } from './user/admin-account/admin-account.compon
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { JwtInterceptor } from './jwt.interceptor';
+import { NavHeaderComponent } from './nav-header/nav-header.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +29,18 @@ import { JwtInterceptor } from './jwt.interceptor';
     InputComponent,
     AdminAccountComponent,
     NotFoundComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    NavHeaderComponent,
+    FooterComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

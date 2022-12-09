@@ -1,31 +1,28 @@
 <!-- Input form -->
 <input [formControl]="control" [type]="type"
-       class="appearance-none block w-full text-gray-600 border border-gray-300
-       rounded py-3 px-4 mb-3 leading-tight focus:outline-none
-       focus:bg-white focus:border-gray-500"
-       [placeholder]="placeholder" />
+       class="form-control" [placeholder]="placeholder"/>
 
 <ng-container *ngIf="control.touched && control.dirty">
   <p *ngIf="control.errors?.['pattern']"
-     class="text-red-400">
+     class="text-start text-danger">
     Salasana täytyy olla vähintään 7 merkkiä pitkä ja sisältää vähintään 1 numero.
   </p>
   <p *ngIf="control.errors?.['required']"
-     class="text-red-400">
+     class="text-start text-danger">
     Tieto on pakollinen.
   </p>
   <p *ngIf="control.errors?.['minlength']"
-     class="text-red-400">
+     class="text-start text-danger">
     The value must be at least
     {{ control.errors?.['minlength'].requiredLength }}
     characters long.
   </p>
   <p *ngIf="control.errors?.['email']"
-     class="text-red-400">
+     class="text-start text-danger">
     Anna kelvollinen sähköpostiosoite.
   </p>
   <p *ngIf="control.errors?.['noMatch']"
-     class="text-red-400">
+     class="text-start text-danger">
     Salasanat eivät täsmää.
   </p>
 </ng-container>

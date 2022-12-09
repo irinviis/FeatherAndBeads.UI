@@ -1,0 +1,53 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+
+    <!--Logo-->
+    <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670164700/FeatherAndBeads/Logo_n5ntys.png"
+         routerLink="/" alt="Feather&Beads" width="80" height="40">
+
+    <!-- Search form -->
+    <form>
+      <input class="form-control me-sm-2" type="text"
+             placeholder="Hae tuotetta" />
+    </form>
+
+    <!-- Icons -->
+    <div class="d-md-flex justify-content-md-end">
+      <!-- Shopping cart -->
+      <a class="btn btn-light rounded-0" routerLink="/shopping-cart">
+        <i class="fa fa-shopping-cart"></i>
+      </a>
+       <!--User Login/Register--> 
+      <a *ngIf="!(accountService.currentUser$ | async)" class="btn btn-light rounded-0"
+         routerLink="/register-login" role="button">
+        <i class="fa fa-user"></i>
+      </a>
+
+      <!-- User account -->
+      <div class="dropdown d-flex"
+           *ngIf="accountService.currentUser$ | async" dropdown>
+        <a class="btn btn-light rounded-0" dropdownToggle >
+          <i class="fa fa-user"></i>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right rounded-0" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/admin-account">
+          Oma tili
+          </a>
+          <a class="dropdown-item" routerLink="/admin-account">
+          Tilaukset
+          </a>
+          <a class="dropdown-item" routerLink="/admin-account">
+          Asiakastiedot
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+          Kirjaudu ulos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
