@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { AdminAccountComponent } from './user/admin-account/admin-account.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
 import { RegisterLoginComponent } from './user/register-login/register-login.component';
 
 
@@ -34,8 +34,8 @@ let routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'admin-account',
-        component: AdminAccountComponent
+        path: 'user-account',
+        component: UserAccountComponent
       }
     ]
   },

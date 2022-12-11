@@ -8,7 +8,7 @@ export interface IProduct {
   tax: number;
   quantity: number;
   removed: boolean;
-  categoryId: number;
   mainPhoto: IPhoto;
   photos: IPhoto[];
+  productCategories: number[];  
 }

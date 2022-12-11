@@ -16,7 +16,7 @@
     <div class="d-md-flex justify-content-md-end">
       <!-- Shopping cart -->
       <a class="btn btn-light rounded-0" routerLink="/shopping-cart">
-        <i class="fa fa-shopping-cart"></i>
+        <i class="fa fa-shopping-basket"></i>
       </a>
        <!--User Login/Register--> 
       <a *ngIf="!(accountService.currentUser$ | async)" class="btn btn-light rounded-0"
@@ -32,13 +32,13 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right rounded-0" *dropdownMenu>
-          <a class="dropdown-item" routerLink="/admin-account">
+          <a class="dropdown-item" routerLink="/user-account">
           Oma tili
           </a>
-          <a class="dropdown-item" routerLink="/admin-account">
+          <a class="dropdown-item" routerLink="/user-account">
           Tilaukset
           </a>
-          <a class="dropdown-item" routerLink="/admin-account">
+          <a class="dropdown-item" routerLink="/user-account">
           Asiakastiedot
           </a>
           <div class="dropdown-divider"></div>

@@ -1,0 +1,159 @@
+<!-- User account -->
+<div class="container mt-5 mb-5" style="min-height: 50vh;"
+     *ngIf="accountService.currentUser$ | async">
+
+  <button class="btn btn-primary" (click)="openModal(template)">
+    <i class="fa fa-plus" aria-hidden="true" style="margin-right: 8px;"></i>
+    Lisää tuote
+  </button>
+
+  <!--Add product modal-->
+  <ng-template #template>
+    <!--Modal header-->
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Lisää tuote</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close"
+              (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <!--Modal body-->
+    <div class="modal-body">
+      <form #addForm="ngForm" (ngSubmit)="addProduct()" id="addProduct">
+        <!-- Select Category -->
+        <select multiple class="form-select mt-3" name="productCategories"
+          [(ngModel)]="newProduct.productCategories" aria-label="Valitse ryhmä">
+          <option selected>Valitse ryhmä</option>
+          <option *ngFor="let category of productCategories" value="{{ category.id }}">
+            {{ category.categoryName }}
+          </option>
+        </select>
+        <!-- Nimi -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Nimi" [(ngModel)]="newProduct.name"
+                  name="name"></textarea>
+
+        <!-- Kuvaus -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Kuvaus" [(ngModel)]="newProduct.description"
+                  name="description"></textarea>
+
+        <!-- Hinta -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Hinta"></textarea>
+      </form>
+    </div>
+    <!--Buttons-->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="addProduct()"
+              form="addProduct">
+        Lisää
+      </button>
+    </div>
+  </ng-template>
+
+
+
+  <!-- Profile settings -->
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+    <div *ngFor="let product of products" class="col">
+      <div class="card mt-3 rounded-0 border-primary">
+
+        <!-- Product photo -->
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670697686/FeatherAndBeads/IMG_0841_hikmdg.jpg"
+             alt="Product image"
+             class="img-fluid rounded-0 mb-2">
+
+
+
+        <!-- Edit information -->
+        <div class="card-body text-primary">
+
+          <!-- Edit Product -->
+          <tabset type="pills">
+            <tab heading="Tiedot">
+              <form #editForm="ngForm">
+                <!--(ngSubmit)="" id="editForm"-->
+
+                <!-- Select Category -->
+                <select multiple class="form-select mt-3" name="productCategories"
+                        [(ngModel)]="product.productCategories"  aria-label="Valitse ryhmä">             
+                  <option *ngFor="let category of productCategories" [ngValue]="category.id">
+                    {{ category.categoryName }}
+                  </option>
+                </select>
+
+                <!-- Nimi -->
+                <textarea class="form-control  mt-3" rows="1"
+                          placeholder="Nimi" [(ngModel)]="product.name"
+                          name="name"></textarea>
+                <!-- Kuvaus -->
+                <textarea class="form-control  mt-3" rows="1"
+                          placeholder="Kuvaus" [(ngModel)]="product.description"
+                          name="description"></textarea>
+
+                <!-- Hinta -->
+                <textarea class="form-control  mt-3" rows="1"
+                          placeholder="Hinta"></textarea>
+
+
+              </form>
+
+              <!-- Button -->
+              <div class="col d-flex justify-content-between mt-4">
+                <button class=" btn btn-sm btn-outline-primary">
+                  <!--(click)="openModal(template, member)"-->
+                  Poista
+                </button>
+                <button [disabled]="!editForm.dirty" form="editForm"
+                        class=" btn btn-sm btn-primary">
+                  Tallenna
+                </button>
+              </div>
+            </tab>
+
+            <!-- Photos header -->
+            <tab heading="Kuvat">
+              <!--<app-photo-editor>--> <!--[member]="member" (picturesUpdated)="loadMember()"--><!--</app-photo-editor>-->
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<!-- Remove profile modal -->
+<!--<ng-template #template>-->
+<!-- Modal header -->
+<!--<div class="modal-header">
+  <h4 class="modal-title pull-left">Confirm remove</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close"
+          (click)="modalRef?.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>-->
+<!-- Modal body -->
+<!--<div class="modal-body">
+  Your profile will be deleted permanently! Are you sure you want to delete profile?
+</div>-->
+<!-- Buttons -->
+<!--<div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              (click)="modalRef?.hide()">
+        Close
+      </button>
+      <button type="button" class="btn btn-primary" (click)="removeMember()">Delete profile</button>
+    </div>
+  </ng-template>
+</div>-->
+
+<p>Product {{newProduct | json}}</p>
+<p>Products {{products | json}}</p>
+
+<div *ngFor="let category of productCategories">
+  <p>{{category | json}}</p>
+</div>
+

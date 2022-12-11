@@ -11,13 +11,16 @@ import { RegisterLoginComponent } from './user/register-login/register-login.com
 import { ProductsComponent } from './products/products.component';
 import { InputComponent } from './shared/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdminAccountComponent } from './user/admin-account/admin-account.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { JwtInterceptor } from './jwt.interceptor';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FooterComponent } from './footer/footer.component';
+import { ProductComponent } from './product/product.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,12 @@ import { FooterComponent } from './footer/footer.component';
     RegisterLoginComponent,
     ProductsComponent,
     InputComponent,
-    AdminAccountComponent,
+    UserAccountComponent,
     NotFoundComponent,
     ShoppingCartComponent,
     NavHeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -40,7 +44,9 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

@@ -1,70 +1,86 @@
-
-<!-- Header -->
-<div class="text-center">
-  <h3 class="text-primary fw-normal mt-5">Tuoteryhmä</h3>
-</div>
-
 <!-- Gategories -->
-<div class="container mt-2 mb-5">
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <!-- Product category -->
-    <div class="col">
-      <div class="card mt-5 border border-primary rounded-0">
-        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670612417/FeatherAndBeads/IMG_0838_xzhnc5.jpg"
-             class="d-block user-select-none img-thumbnail" routerLink="/rannekorut">
-        <div class="card-img-overlay">
-          <h5 class="card-title text-light text-center">Rannekorut</h5>
+<div class="container mt-5 mb-5"  style="min-height: 50vh;">
+
+  <!-- Uutuudet -->
+  <div class="card border-0 mt-5 mb-3 w-100">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670693586/FeatherAndBeads/IMG_0873_x1majo.jpg"
+             class="img-fluid" alt="...">
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <a routerLink="/rannekorut" class="btn btn-outline-primary border-0 rounded-0">
+            Katso uutuuksia tästä
+            <i class="fa fa-chevron-circle-right fa-lg" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
-      <a routerLink="/rannekorut" class="btn btn-primary rounded-0 w-100 mt-3">
-        Katso lisää
-      </a>
     </div>
+  </div>
 
-
+  <div class="row row-cols-1 row-cols-md-2 g-4  mt-5">
+    <!--Rannekorut-->
     <div class="col">
-      <div class="card mt-5 border border-primary rounded-0">
-        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670612417/FeatherAndBeads/IMG_0838_xzhnc5.jpg"
-             class="d-block user-select-none img-thumbnail">
-        <div class="card-img-overlay">
-          <h5 class="card-title text-light text-center">Korvakorut</h5>
-        </div>
+      <h4 class="text-primary">Rannekorut</h4>
+      <div class="card mt-3 border-0">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670671252/FeatherAndBeads/IMG_0839_zlntl4.jpg"
+             class="d-block">
       </div>
-      <a routerLink="/rannekorut" class="btn btn-primary rounded-0 w-100 mt-3">
-        Katso lisää
-      </a>
+      <div class="d-flex justify-content-end">
+        <a routerLink="/rannekorut" class="btn btn-outline-primary border-0 rounded-0 mt-3">
+          Katso rannekoruja
+          <i class="fa fa-chevron-circle-right fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
-
-
+    <!--Kaulakorut-->
     <div class="col">
-      <div class="card mt-5 border border-primary rounded-0">
-        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670612411/FeatherAndBeads/IMG_0836_zclwoh.jpg"
-             class="d-block user-select-none img-thumbnail">
-        <div class="card-img-overlay">
-          <h5 class="card-title text-light text-center">Kaulakorut</h5>
-        </div>
+      <h4 class="text-primary">Kaulakorut</h4>
+      <div class="card mt-3 border-0">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670671261/FeatherAndBeads/IMG_0845_j7kkd4.jpg"
+             class="d-block">
       </div>
-      <a routerLink="/rannekorut" class="btn btn-primary rounded-0 w-100 mt-3">
-        Katso lisää
-      </a>
+      <div class="d-flex justify-content-end">
+        <a routerLink="/rannekorut" class="btn btn-outline-primary border-0 rounded-0 mt-3">
+          Katso kaulakoruja
+          <i class="fa fa-chevron-circle-right fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
+  </div>
 
-
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+    <!-- Korvakorut -->
     <div class="col">
-      <div class="card mt-5 border border-primary rounded-0">
-        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670612411/FeatherAndBeads/IMG_0836_zclwoh.jpg"
-             class="d-block user-select-none img-thumbnail">
-        <div class="card-img-overlay">
-          <h5 class="card-title text-light text-center">Avaimenperät</h5>
-        </div>
+      <h4 class="text-primary">Korvakorut</h4>
+      <div class="card mt-3 border-0">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670671256/FeatherAndBeads/IMG_E0863_rv39tz.jpg"
+             class="d-block">
       </div>
-      <a routerLink="/rannekorut" class="btn btn-primary rounded-0 w-100 mt-3">
-        Katso lisää
-      </a>
+      <div class="d-flex justify-content-end">
+        <a routerLink="/rannekorut" class="btn btn-outline-primary border-0 rounded-0 mt-3">
+          Katso korvakoruja
+          <i class="fa fa-chevron-circle-right fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <!--Avaimenperät-->
+    <div class="col">
+      <h4 class="text-primary">Avaimenperät</h4>
+      <div class="card mt-3 border-0">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670671260/FeatherAndBeads/IMG_0846_ibh7hh.jpg"
+             class="d-block">
+      </div>
+      <div class="d-flex justify-content-end">
+        <a routerLink="/rannekorut" class="btn btn-outline-primary border-0 rounded-0 mt-3">
+          Katso avaimenperiä
+          <i class="fa fa-chevron-circle-right fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
-
 
 
 

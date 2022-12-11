@@ -40,7 +40,7 @@ export class RegisterLoginComponent implements OnInit {
 
   register() {
     this.accountService.register(this.registerForm.value as IUser).subscribe(() => {
-      this.router.navigateByUrl('/admin-account')
+      this.router.navigateByUrl('/user-account')
     }, error => {
       console.log(error)
     })
@@ -48,7 +48,7 @@ export class RegisterLoginComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(() => {
-      this.router.navigateByUrl('/admin-account');
+      this.router.navigateByUrl('/user-account');
     }, error => {
       console.log(error);
     })
