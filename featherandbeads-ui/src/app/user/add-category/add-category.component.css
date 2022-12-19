@@ -1,0 +1,18 @@
+.d-block {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  visibility: visible;
+}
+
+  .d-block:hover {
+    opacity: 0.7;
+  }
+
+.card {
+  cursor: pointer;
+}
+
+.h5 {
+  cursor: pointer;
+}

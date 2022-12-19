@@ -12,9 +12,8 @@
 
     <div class="collapse navbar-collapse" id="mobileNavbarMenu">
       <div class="navbar-nav">
-        <a class="nav-link text-uppercase text-center"
-           *ngFor="let category of productCategories"
-           routerLink="products/{{ category.link }}" [state]=category>
+        <a class="nav-link text-uppercase text-center" *ngFor="let category of productCategories"
+           routerLink="products/{{ category.link }}">
           {{ category.categoryName }}
         </a>
       </div>

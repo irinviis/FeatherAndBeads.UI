@@ -9,7 +9,7 @@
     <!-- Search form -->
     <form>
       <input class="form-control me-sm-2" type="text"
-             placeholder="Hae tuotetta" />
+             placeholder="Hae tuotetta"  />
     </form>
 
     <!-- Icons -->
@@ -27,19 +27,19 @@
       <!-- User account -->
       <div class="dropdown d-flex"
            *ngIf="accountService.currentUser$ | async" dropdown>
-        <a class="btn btn-light rounded-0" dropdownToggle >
+        <a class="btn btn-light rounded-0" dropdownToggle>
           <i class="fa fa-user"></i>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right rounded-0" *dropdownMenu>
-          <a class="dropdown-item" routerLink="/user-account">
-          Oma tili
+          <a class="dropdown-item" routerLink="/add-product">
+          Tuotteet
           </a>
-          <a class="dropdown-item" routerLink="/user-account">
+          <a class="dropdown-item" routerLink="/add-category">
+          Ryhmät
+          </a>
+          <a class="dropdown-item" routerLink="/orders">
           Tilaukset
-          </a>
-          <a class="dropdown-item" routerLink="/user-account">
-          Asiakastiedot
           </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()">

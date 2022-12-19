@@ -11,34 +11,36 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  selectedCategory: ICategory = <ICategory>{}
   routeSubscription: any
   categoryProducts: IProduct[] = [];
-  productCategoryId!: IProduct;
 
   constructor(
-    private router: Router,
+    private router: ActivatedRoute,
     private productService: ProductService
   ) { }
 
 
   ngOnInit(): void {
-
-    this.routeSubscription = this.router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
-      const navigation = this.router.getCurrentNavigation();  
-      if (navigation?.extras?.state) {
-        this.selectedCategory = navigation?.extras?.state as ICategory
-        this.getProductsForCategory();
-      }         
+    this.routeSubscription = this.router.params.subscribe(params => {
+      let category = params as ICategory;
+      this.getProductCategoryByLinkName(category.link);
     });
   }
 
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
   }
 
-  getProductsForCategory() {
-    this.productService.getProductsForCategory(this.selectedCategory.id).subscribe(products => {
+  getProductCategoryByLinkName(linkName: string) {
+    this.productService.getProductCategoryByLinkName(linkName).subscribe(category => {
+      this.getProductsForCategory(category)
+    })
+  }
+
+  getProductsForCategory(category: ICategory) {
+    this.productService.getProductsForCategory(category.id).subscribe(products => {      
       this.categoryProducts = products;
     })
   }

@@ -1,0 +1,114 @@
+<!-- Add Products -->
+<div class="container mt-5 mb-5" style="min-height: 50vh;">
+
+  <!-- Button add product -->
+  <button class="btn btn-primary rounded-0" (click)="openModal(template)">
+    <i class="fa fa-plus" aria-hidden="true" style="margin-right: 8px;"></i>
+    Lisää tuote
+  </button>
+
+  <!--Add product modal-->
+  <ng-template #template>
+    <!--Modal header-->
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Lisää tuote</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close"
+              (click)="modalRef?.hide()">
+      </button>
+    </div>
+    <!--Modal body-->
+    <div class="modal-body">
+      <form #addForm="ngForm" (ngSubmit)="addProduct()" id="addProduct">
+        <!-- Select Category -->
+        <select multiple class="form-select mt-3" name="productCategories"
+                [(ngModel)]="newProduct.productCategories">
+          <option *ngFor="let category of productCategories" value="{{ category.id }}">
+            {{ category.categoryName }}
+          </option>
+        </select>
+        <!-- Nimi -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Nimi" [(ngModel)]="newProduct.name"
+                  name="name"></textarea>
+
+        <!-- Kuvaus -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Kuvaus" [(ngModel)]="newProduct.description"
+                  name="description"></textarea>
+
+        <!-- Hinta -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Hinta"></textarea>
+      </form>
+    </div>
+    <!--Buttons-->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary rounded-0" (click)="addProduct()"
+              form="addProduct">
+        Lisää
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Products Details -->
+  <div class="row row-cols-1 row-cols-md-4 g-4  mt-3">
+    <!--Rannekorut-->
+    <div class="col" *ngFor="let product of products">
+      <div class="card mt-3 border-0">
+        <img src="{{ product.mainPhoto?.url || '/assets/placeholder.webp'}}"
+             class="d-block" routerLink="/edit-product/{{ product.id }}">
+      </div>
+
+        <h5 class="text-primary text-center h5 text-semibold"
+            routerLink="/edit-product/{{ product.id }}"
+            style="margin-top: 15px;">
+        {{ product.name }}
+        </h5>
+        <h5 class="text-primary text-center" style="margin-top: 15px;">
+          26,90€
+        </h5>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-primary rounded-0"
+                (click)="openModal2(template2, product)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+
+        <!-- Remove product modal -->
+        <ng-template #template2>
+          <!-- Modal header -->
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">
+              Vahvista poistaminen
+            </h4>
+            <button type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalRef?.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            Poista {{ product.name }}?
+          </div>
+          <!-- Buttons -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary rounded-0"
+                    (click)="removeProduct()">
+              Poista
+            </button>
+          </div>
+        </ng-template>
+
+        <button class="btn btn-primary rounded-0"
+                routerLink="/edit-product/{{ product.id }}">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,101 @@
+<!-- Add categories -->
+<div class="container mt-5 mb-5" style="min-height: 50vh;">
+
+  <!-- Button add category -->
+  <button class="btn btn-primary rounded-0" (click)="openModal(addCategoryModal)">
+    <i class="fa fa-plus" aria-hidden="true" style="margin-right: 8px;"></i>
+    Lisää ryhmä
+  </button>
+
+  <!--Add product modal-->
+  <ng-template #addCategoryModal>
+    <!--Modal header-->
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Lisää ryhmä</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close"
+              (click)="modalRef?.hide()">
+      </button>
+    </div>
+
+    <!--Modal body-->
+    <div class="modal-body">
+      <form #addForm="ngForm" (ngSubmit)="addCategory()" id="addCategory">
+        <!-- Nimi -->
+        <input type="text" class="form-control  mt-3" rows="1"
+               placeholder="Nimi" [(ngModel)]="newCategory.categoryName"
+               name="categoryName" />
+
+        <!-- Link -->
+        <input type="text" class="form-control  mt-3" rows="1"
+               placeholder="link" [(ngModel)]="newCategory.link"
+               name="link" />
+      </form>
+    </div>
+    <!--Buttons-->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary rounded-0" (click)="addCategory()"
+              form="addCategory">
+        Lisää
+      </button>
+    </div>
+  </ng-template>
+
+
+  <!-- Products Details -->
+  <div class="row row-cols-1 row-cols-md-4 g-4  mt-3">
+    <!--Rannekorut-->
+    <div class="col" *ngFor="let category of productCategories">
+      <div class="card mt-3 border-0">
+        <img src="{{ category.photo?.url || '/assets/placeholder.webp' }}"
+             class="d-block" routerLink="/edit-category/{{ category.id }}" />
+      </div>
+      <div class="d-flex justify-content-between" style="margin-top: 15px;">
+        <h5 class="text-primary h5 text-semibold"
+          routerLink="/edit-category/{{ category.id }}">
+          {{ category.categoryName }}
+        </h5>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between mt-2">
+        <button class="btn btn-outline-primary rounded-0"
+                (click)="openModal2(template2, category)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+
+         <!--Remove product modal--> 
+        <ng-template #template2>
+         <!--Modal header--> 
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">
+            Vahvista poistaminen
+          </h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close"
+                  (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+         <!--Modal body--> 
+        <div class="modal-body">
+          Poista {{ category.categoryName }}?
+        </div>
+         <!--Buttons--> 
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary rounded-0"
+                  (click)="removeCategory()">
+        Poista
+            </button>
+          </div>
+        </ng-template>
+
+      <button class="btn btn-primary rounded-0"
+        routerLink="/edit-category/{{ category.id }}">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
+
+      </div>
+    </div>
+  </div>
+
+</div>

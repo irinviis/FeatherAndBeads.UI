@@ -7,6 +7,12 @@ import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserAccountComponent } from './user/user-account/user-account.component';
 import { RegisterLoginComponent } from './user/register-login/register-login.component';
+import { AddProductComponent } from './user/add-product/add-product.component';
+import { AddCategoryComponent } from './user/add-category/add-category.component';
+import { OrdersComponent } from './user/orders/orders.component';
+import { ProductComponent } from './product/product.component';
+import { EditProductComponent } from './user/edit-product/edit-product.component';
+import { EditCategoryComponent } from './user/edit-category/edit-category.component';
 
 
 let routes: Routes = [
@@ -14,12 +20,14 @@ let routes: Routes = [
     path: '',
     component: HomeComponent
   },
-  
   {
-    path: 'products/:cat',
+    path: 'products/:link',
     component: ProductsComponent
   },
-
+  {
+    path: 'product/:id',
+    component: ProductComponent
+  },
   {
     path: 'register-login',
     component: RegisterLoginComponent
@@ -36,6 +44,26 @@ let routes: Routes = [
       {
         path: 'user-account',
         component: UserAccountComponent
+      },
+      {
+        path: 'add-product',
+        component: AddProductComponent
+      },
+      {
+        path: 'edit-product/:id',
+        component: EditProductComponent
+      },
+      {
+        path: 'add-category',
+        component: AddCategoryComponent
+      },
+      {
+        path: 'edit-category/:id',
+        component: EditCategoryComponent
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent
       }
     ]
   },

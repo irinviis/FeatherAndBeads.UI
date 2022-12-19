@@ -10,5 +10,7 @@ export interface IProduct {
   removed: boolean;
   mainPhoto: IPhoto;
   photos: IPhoto[];
-  productCategories: number[];  
+  productCategories: number[];
+  photoFilesForUpload: File[];
+  isLoading: boolean;
 }
