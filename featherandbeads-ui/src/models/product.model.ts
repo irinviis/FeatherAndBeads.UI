@@ -4,7 +4,7 @@ export interface IProduct {
   id: number;
   name: string;
   description: string;
-  priceWithoutTax: number;
+  priceWithTax: number;
   tax: number;
   quantity: number;
   removed: boolean;

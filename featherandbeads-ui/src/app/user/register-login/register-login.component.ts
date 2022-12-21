@@ -15,9 +15,11 @@ export class RegisterLoginComponent implements OnInit {
     email: '',
     password: ''
   }
+  showAlert = false
+  alertMsg = ''
 
   constructor(
-    private accountService: AccountService,
+    public accountService: AccountService,
     private router: Router
   ) { }
 
@@ -42,15 +44,22 @@ export class RegisterLoginComponent implements OnInit {
     this.accountService.register(this.registerForm.value as IUser).subscribe(() => {
       this.router.navigateByUrl('/add-product')
     }, error => {
-      console.log(error)
+
+      this.showAlert = true
+      this.alertMsg = 'Sähköpostiosoite on jo varattu. Kokeile toista sähköpostiosoitetta.'
     })
   }
 
   login() {
     this.accountService.login(this.model).subscribe(() => {
-      this.router.navigateByUrl('/add-product');
+      this.router.navigateByUrl('/add-product')
     }, error => {
-      console.log(error);
+
+      this.showAlert = true
+      this.alertMsg = 'Väärä sähköpostiosoite tai salasana.'
+      //setInterval(() => {
+      //  this.showAlert = false
+      //}, 3000);
     })
   }
 

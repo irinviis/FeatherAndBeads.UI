@@ -1,5 +1,6 @@
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<!-- Header Navbar -->
+<nav class="navbar navbar-light bg-light">
   <div class="container">
 
     <!--Logo-->
@@ -8,46 +9,211 @@
 
     <!-- Search form -->
     <form>
-      <input class="form-control me-sm-2" type="text"
-             placeholder="Hae tuotetta"  />
+      <input class="form-control me-sm-2 border" type="text"
+             placeholder="Hae tuotetta" />
     </form>
 
-    <!-- Icons -->
-    <div class="d-md-flex justify-content-md-end">
-      <!-- Shopping cart -->
-      <a class="btn btn-light rounded-0" routerLink="/shopping-cart">
-        <i class="fa fa-shopping-basket"></i>
-      </a>
-       <!--User Login/Register--> 
-      <a *ngIf="!(accountService.currentUser$ | async)" class="btn btn-light rounded-0"
-         routerLink="/register-login" role="button">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+
+      <!--SideNavbar Login/Register-->
+      <!-- Button -->
+      <button *ngIf="!(accountService.currentUser$ | async)"
+              class="navbar-toggler text-primary px-3 border-0 rounded-0"
+              type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasLoginNavbar" aria-controls="offcanvasLoginNavbar">
         <i class="fa fa-user"></i>
-      </a>
+      </button>
 
-      <!-- User account -->
-      <div class="dropdown d-flex"
-           *ngIf="accountService.currentUser$ | async" dropdown>
-        <a class="btn btn-light rounded-0" dropdownToggle>
-          <i class="fa fa-user"></i>
-        </a>
+      <!-- SideNavbar -->
+      <div class="offcanvas offcanvas-end" tabindex="-1"
+           id="offcanvasLoginNavbar" aria-labelledby="offcanvasLoginNavbarLabel">
 
-        <div class="dropdown-menu dropdown-menu-right rounded-0" *dropdownMenu>
-          <a class="dropdown-item" routerLink="/add-product">
-          Tuotteet
-          </a>
-          <a class="dropdown-item" routerLink="/add-category">
-          Ryhmät
-          </a>
-          <a class="dropdown-item" routerLink="/orders">
-          Tilaukset
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()">
-          Kirjaudu ulos
-          </a>
+        <!-- Header -->
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-primary" id="offcanvasLoginNavbarLabel">
+            Oma tili
+          </h5>
+          <button type="button" class="btn-close rounded-0"
+                  data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr />
+
+        <!-- Body -->
+        <div class="offcanvas-body">
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <p class="text-primary fs-5">Kirjaudu sisään</p>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <p class="text-primary fs-5">tai</p>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <p class="text-primary fs-5">rekisteröidy</p>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <p class="text-primary fs-5">nähdäksesi omat tilaukset</p>
+          </div>
+          <!-- Button -->
+          <button class="w-100 btn btn-primary rounded-0 mt-4 mb-3"
+                  routerLink="/register-login" data-bs-dismiss="offcanvas">
+            Kirjaudu / Rekisteröidy
+          </button>
+        </div>
+      </div>
+
+
+      <!--SideNavbar UserAccount-->
+      <!-- Button -->
+      <button *ngIf="accountService.currentUser$ | async"
+              class="navbar-toggler text-primary px-3 border-0 rounded-0"
+              type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasUserNavbar" aria-controls="offcanvasUserNavbar">
+        <span class="fa fa-user"></span>
+      </button>
+
+      <!-- SideNavbar -->
+      <div class="offcanvas offcanvas-end" tabindex="-1"
+           id="offcanvasUserNavbar" aria-labelledby="offcanvasUserNavbarLabel">
+
+        <!-- Header -->
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-primary" id="offcanvasUserNavbarLabel">
+            Käyttäjätili
+          </h5>
+          <button type="button" class="btn-close rounded-0"
+                  data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr />
+
+        <!-- Body -->
+        <div class="offcanvas-body">
+          <!-- Admin Links -->
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/add-product"
+                 data-bs-dismiss="offcanvas">
+                Tuotteet
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/add-category"
+                 data-bs-dismiss="offcanvas">
+                Ryhmät
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/orders"
+                 data-bs-dismiss="offcanvas">
+                Tilaukset
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()"
+                 data-bs-dismiss="offcanvas">
+                Kirjaudu ulos
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!--SideNavbar ShoppingCart-->
+      <!-- Button -->
+      <button class="navbar-toggler text-primary border-0 rounded-0"
+              type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCartNavbar" aria-controls="offcanvasCartNavbar">
+        <i class="fa fa-shopping-bag"></i>
+        <span class="bag" *ngIf="products.length > 0">{{ products.length }}</span>
+      </button>
+
+      <!-- SideNavbar -->
+      <div class="offcanvas offcanvas-end" tabindex="-1"
+           id="offcanvasCartNavbar" aria-labelledby="offcanvasCartNavbarLabel">
+
+        <!-- Header -->
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-primary" id="offcanvasCartNavbarLabel">
+            Ostoskori
+          </h5>
+          <button type="button" class="btn-close rounded-0"
+                  data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr />
+
+        <!--Body -->
+        <div class="offcanvas-body">
+
+          <div *ngIf="products.length === 0">
+            <div class="d-flex justify-content-center text-primary">
+              <i class="fa fa-shopping-bag fa-3x" aria-hidden="true"></i>
+            </div>
+            <p class="text-primary text-center mt-4">
+              Ostoskorissasi ei ole vielä tuotteita.
+            </p>
+          </div>
+
+          <!-- Product -->
+          <div *ngIf="products.length > 0">
+            <div class="row mt-3" *ngFor="let product of products">
+
+              <div class="col-3">
+                <img src="{{ product.mainPhoto.url }}" data-bs-dismiss="offcanvas"
+                     alt="Feather&Beads" routerLink="/product/{{ product.id }}"
+                     width="90" height="90" />
+              </div>
+              <div class="col-7">
+                <p class="text-primary p" routerLink="/product/{{ product.id }}"
+                   data-bs-dismiss="offcanvas">
+                  {{ product.name }}
+                </p>
+                <p class="text-primary" style="margin-bottom: 20px;">
+                  {{product.priceWithTax| currency:'EUR':'symbol':'1.2-2':'fi'}}
+                </p>
+              </div>
+
+              <div class="col-2 text-end">
+                <button class="btn btn-secondary px-2 rounded-0"
+                        (click)="removeProduct(product)">
+                  <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <hr class="mt-5" />
+
+            <!-- Summary -->
+            <div class="row mt-4">
+              <div class="col-6">
+                <p class="text-primary">
+                  Kokonaishinta
+                </p>
+              </div>
+
+              <div class="col-6 text-end">
+                <p class="text-primary">
+                  {{getCartPrice() | currency:'EUR':'symbol':'1.2-2':'fi'}}
+                </p>
+              </div>
+            </div>
+
+            <!-- Cart Button -->
+            <button class="btn btn-primary w-100 mt-3 rounded-0"
+                    routerLink="/shopping-cart" data-bs-dismiss="offcanvas">
+              Siirry ostoskoriin
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
+
   </div>
 </nav>
+
 

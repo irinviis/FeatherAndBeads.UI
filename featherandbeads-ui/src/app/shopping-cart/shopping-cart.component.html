@@ -1,6 +1,136 @@
-
 <!-- Shopping Cart -->
 <div class="container mt-5 mb-5" style="min-height: 50vh;">
-  <p>shopping-cart works!</p>
+
+  <div *ngIf="products.length === 0">
+    <div class="d-flex justify-content-center text-primary">
+      <i class="fa fa-shopping-bag fa-5x" aria-hidden="true"></i>
+    </div>
+    <h5 class="text-primary text-center mt-5">
+      Ostoskorissasi ei ole vielä tuotteita.
+    </h5>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-2" *ngIf="products.length > 0">
+
+    <!-- Shopping Cart -->
+    <div class="col-md-7">
+      <div class="card h-100 border-0 rounded-0">
+
+        <div class="card-header bg-transparent mt-2 border-0
+             text-primary h4">
+          Ostoskori
+        </div>
+        <hr />
+
+        <div class="card-body mt-2">
+          <div class="row" *ngFor="let product of products">
+            <div class="col-8">
+              <div class="d-flex justify-content-start">
+                <img src="{{ product.mainPhoto.url }}"
+                     alt="Feather&Beads" routerLink="/product/{{ product.id }}"
+                     width="90" height="90" />
+                <h5 class="text-primary h" style="margin-top: 30px; margin-left: 15px;"
+                    routerLink="/product/{{ product.id }}">
+                  {{ product.name }}
+                </h5>
+              </div>
+            </div>
+            <div class="col-4 text-end">
+              <p class="text-primary text-bold" style="margin-top: 30px;">
+                {{product.priceWithTax| currency:'EUR':'symbol':'1.2-2':'fi'}}
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-secondary px-2 rounded-0 btn-sm"
+                      (click)="removeProduct(product)">
+                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                Poista
+              </button>
+            </div>
+            <hr />
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="col-md-5">
+      <div class="card border-0 rounded-0"  style="background: #f7f7f7;">
+        <div class="card-header mt-2 bg-transparent border-0
+             text-primary h4">
+          Yhteenveto
+        </div>
+        <hr />
+
+        <div class="card-body">
+          <div class="row" *ngFor="let product of products">
+            <div class="col-8 text-start">
+              <h5 class="text-primary">
+                {{ product.name }}
+              </h5>
+            </div>
+            <div class="col-4 text-end">
+              <p class="text-primary text-bold">
+                {{product.priceWithTax| currency:'EUR':'symbol':'1.2-2':'fi'}}
+              </p>
+            </div>
+          </div>
+          <hr />
+        </div>
+       
+        <div class="card-footer bg-transparent border-0
+             text-primary">
+          <!--<div class="row">
+            <div class="col-6 text-start">
+              <h6 class="text-primary">
+                Tuotteet
+              </h6>
+            </div>
+            <div class="col-6 text-end">
+              <p class="text-primary">
+                {{getCartPrice() | currency:'EUR':'symbol':'1.2-2':'fi'}}
+              </p>
+            </div>
+          </div>-->
+          <div class="row">
+            <div class="col-6 text-start">
+              <h6 class="text-primary" style="margin-top:5px;">
+                Toimitus
+              </h6>
+            </div>
+            <div class="col-6 text-end">
+              <p class="text-primary text-bold">
+                0,00
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-start">
+              <h5 class="text-primary" style="font-weight:bold;">
+                Yhteensä
+              </h5>
+              <p class="text-primary fs-6 text-muted">
+                ALV 12,90
+              </p>
+            </div>
+            <div class="col-6 text-end">
+              <h5 class="text-primary" style="font-weight:bold;">
+                {{getCartPrice() | currency:'EUR':'symbol':'1.2-2':'fi'}}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary rounded-0 mt-3 w-100">
+        Jatka ostamista
+        <i class="fa fa-chevron-circle-right" style="margin-left: 8px;"
+           aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
 </div>
 

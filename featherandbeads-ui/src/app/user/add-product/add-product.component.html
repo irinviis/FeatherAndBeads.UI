@@ -37,8 +37,8 @@
                   name="description"></textarea>
 
         <!-- Hinta -->
-        <textarea class="form-control  mt-3" rows="1"
-                  placeholder="Hinta"></textarea>
+        <input class="form-control  mt-3" name="priceWithTax" type="number"
+               placeholder="Hinta" [(ngModel)]="newProduct.priceWithTax" />
       </form>
     </div>
     <!--Buttons-->
@@ -52,27 +52,34 @@
 
   <!-- Products Details -->
   <div class="row row-cols-1 row-cols-md-4 g-4  mt-3">
-    <!--Rannekorut-->
+
+    <!--Products-->
     <div class="col" *ngFor="let product of products">
+      <h5 class="text-primary text-center h5 text-semibold"
+          routerLink="/edit-product/{{ product.id }}"
+          style="margin-top: 15px;">
+        {{ product.name }}
+      </h5>
+      <h5 class="text-primary text-center" style="margin-top: 15px;">
+        {{ product.priceWithTax | currency:'EUR':'symbol':'1.2-2':'fi' }}
+      </h5>
       <div class="card mt-3 border-0">
         <img src="{{ product.mainPhoto?.url || '/assets/placeholder.webp'}}"
              class="d-block" routerLink="/edit-product/{{ product.id }}">
       </div>
 
-        <h5 class="text-primary text-center h5 text-semibold"
-            routerLink="/edit-product/{{ product.id }}"
-            style="margin-top: 15px;">
-        {{ product.name }}
-        </h5>
-        <h5 class="text-primary text-center" style="margin-top: 15px;">
-          26,90€
-        </h5>
-
       <!-- Buttons -->
-      <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-outline-primary rounded-0"
+      <button class="btn btn-sm btn-primary mt-3 w-100 rounded-0"
+              routerLink="/edit-product/{{ product.id }}">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        Muokkaa tuotetta
+      </button>
+
+      <div class="mt-3">
+        <button class="btn btn-sm btn-outline-primary w-100 rounded-0"
                 (click)="openModal2(template2, product)">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
+          Poista tuote
         </button>
 
         <!-- Remove product modal -->
@@ -91,7 +98,7 @@
           <div class="modal-body">
             Poista {{ product.name }}?
           </div>
-          <!-- Buttons -->
+          <!-- Button -->
           <div class="modal-footer">
             <button type="button" class="btn btn-primary rounded-0"
                     (click)="removeProduct()">
@@ -99,11 +106,6 @@
             </button>
           </div>
         </ng-template>
-
-        <button class="btn btn-primary rounded-0"
-                routerLink="/edit-product/{{ product.id }}">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button>
 
       </div>
     </div>

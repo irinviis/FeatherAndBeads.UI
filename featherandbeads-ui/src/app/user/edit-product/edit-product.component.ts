@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ICategory } from '../../../models/category.model';
-import { IPhoto } from '../../../models/photo.model';
 import { IProduct } from '../../../models/product.model';
 import { ProductService } from '../../services/product.service';
 

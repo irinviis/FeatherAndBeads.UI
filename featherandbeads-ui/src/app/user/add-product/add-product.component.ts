@@ -1,16 +1,8 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ICategory } from '../../../models/category.model';
 import { IProduct } from '../../../models/product.model';
-import { IUser } from '../../../models/user.model';
-import { AccountService } from '../../services/account.service';
 import { ProductService } from '../../services/product.service';
-import { UserService } from '../../services/user.service';
-import { take } from 'rxjs/operators';
-import { FileUploader } from 'ng2-file-upload';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-product',

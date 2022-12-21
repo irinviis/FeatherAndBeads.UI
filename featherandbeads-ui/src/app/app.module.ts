@@ -1,10 +1,13 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GalleryModule } from '@daelmaak/ngx-gallery';
+import { registerLocaleData } from '@angular/common';
+import localeFi from '@angular/common/locales/fi';
+registerLocaleData(localeFi, 'fi');
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FileUploadModule } from 'ng2-file-upload';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -27,6 +30,10 @@ import { OrdersComponent } from './user/orders/orders.component';
 import { RegisterLoginComponent } from './user/register-login/register-login.component';
 import { UserAccountComponent } from './user/user-account/user-account.component';
 import { EditCategoryComponent } from './user/edit-category/edit-category.component';
+import { SecurityInfoComponent } from './info/security-info/security-info.component';
+import { PaymentComponent } from './info/payment/payment.component';
+import { DeliveryReturnComponent } from './info/delivery-return/delivery-return.component';
+import { ContactComponent } from './info/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +53,11 @@ import { EditCategoryComponent } from './user/edit-category/edit-category.compon
     AddCategoryComponent,
     OrdersComponent,
     EditProductComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    SecurityInfoComponent,
+    PaymentComponent,
+    DeliveryReturnComponent,
+    ContactComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -58,10 +69,12 @@ import { EditCategoryComponent } from './user/edit-category/edit-category.compon
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
-    FileUploadModule
+    GalleryModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: LOCALE_ID,
+      useValue: 'fi-FI'},
   ],
   bootstrap: [AppComponent]
 })

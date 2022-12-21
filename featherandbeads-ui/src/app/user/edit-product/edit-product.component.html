@@ -110,8 +110,8 @@
                   name="description"></textarea>
 
         <!-- Hinta -->
-        <textarea class="form-control  mt-3" rows="1"
-                  placeholder="Hinta"></textarea>
+        <input class="form-control  mt-3" name="priceWithTax" type="number"
+                  placeholder="Hinta" [(ngModel)]="product.priceWithTax" />
 
         <!-- Button -->
         <div class="col d-flex justify-content-end mt-4">

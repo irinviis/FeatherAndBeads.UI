@@ -1,46 +1,50 @@
 
-<div class="container mt-5 mb-5" style="min-height: 50vh;">
+<div class="container mt-3 mb-5" style="min-height: 50vh;">
 
-  <p>{{product.photos|json}}</p>
-
-  <!-- Product Images -->
-  <div class="row mt-2" *ngIf="product">
-    <div class="col-6">
-      <!-- Image Carousel -->
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-
-
-        <div class="carousel-inner">
-
-          <div class="carousel-item" *ngFor="let photo of product.photos ">
-            <img src="{{photo.url}}" class="d-block w-100">
-          </div>
-
-
-
-        </div>
-
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Product Description -->
-    <div class="col-6">
-
+  <!-- Alert message -->
+  <div *ngIf="showAlert" class="toast show rounded-0 text-bg-success" role="alert"
+       style="position: absolute; top:100px;"
+       aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      {{ alertMsg }}
     </div>
   </div>
 
 
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-2" *ngIf="product">
+
+    <!-- Product Images -->
+    <div class="col-md-6">
+      <div class="card mt-2 border-0">
+        <gallery *ngIf="productPhotos.length > 0" [items]="productPhotos"
+                 thumbsOrientation="bottom"></gallery>
+      </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="col-md-6">
+      <div class="card mt-1 h-100 border-0">
+        <div class="card-body text-center">
+          <h4 class="card-title text-primary">{{ product.name }}</h4>
+          <p class="card-text fs-5">
+            {{ product.description }}
+          </p>
+        </div>
+        <div class="card-footer border-0" style="background-color: #ffffff;">
+          <h4 class="text-primary text-center">
+            {{ product.priceWithTax | currency:'EUR':'symbol':'1.2-2':'fi' }}
+          </h4>
+
+          <!-- Button -->
+          <button class="btn btn-primary rounded-0 w-100 mt-4"
+                  (click)="addToCart(product)">
+            <i class="fa fa-shopping-basket" style="margin-right: 8px;"
+               aria-hidden="true"></i>
+            Lisää ostoskoriin
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

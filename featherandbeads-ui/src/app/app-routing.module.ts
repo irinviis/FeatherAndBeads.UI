@@ -13,6 +13,10 @@ import { OrdersComponent } from './user/orders/orders.component';
 import { ProductComponent } from './product/product.component';
 import { EditProductComponent } from './user/edit-product/edit-product.component';
 import { EditCategoryComponent } from './user/edit-category/edit-category.component';
+import { SecurityInfoComponent } from './info/security-info/security-info.component';
+import { PaymentComponent } from './info/payment/payment.component';
+import { DeliveryReturnComponent } from './info/delivery-return/delivery-return.component';
+import { ContactComponent } from './info/contact/contact.component';
 
 
 let routes: Routes = [
@@ -35,6 +39,22 @@ let routes: Routes = [
   {
     path: 'shopping-cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'security',
+    component: SecurityInfoComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
+  },
+  {
+    path: 'delivery-return',
+    component: DeliveryReturnComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   },
   {
     path: '',
