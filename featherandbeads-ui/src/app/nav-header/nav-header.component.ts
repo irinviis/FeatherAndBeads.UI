@@ -23,6 +23,9 @@ export class NavHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cartService.HasUpdates.subscribe(() => {
+      this.getProducts();
+    });  
     this.getProducts();
   }
 
@@ -32,6 +35,10 @@ export class NavHeaderComponent implements OnInit {
 
   getCartPrice() {
     return this.cartService.CalculatePrice();
+  }
+
+  getCartQuantity() {
+    return this.cartService.getCartQuantity();
   }
 
   removeProduct(product: IProduct) {

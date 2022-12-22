@@ -96,5 +96,8 @@ export class ProductService {
     return this.http.post(address, formData);      
   }
 
+  getProductSaldo(productId: number) {
+    return this.http.get<number>(this.baseUrl + 'Product/getProductSaldo?productId=' + productId);
+  }
   
 }                                                                                                                                                                                                                                                                                                                                                                 

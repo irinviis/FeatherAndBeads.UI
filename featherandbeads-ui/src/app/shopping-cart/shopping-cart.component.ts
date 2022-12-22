@@ -15,6 +15,9 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.cartService.HasUpdates.subscribe(() => {
+      this.getProducts();
+    });
     this.getProducts();
   }
 
@@ -24,6 +27,10 @@ export class ShoppingCartComponent implements OnInit {
 
   getCartPrice() {
     return this.cartService.CalculatePrice();
+  }
+
+  updateProductQuantity(product: IProduct) {
+    this.cartService.updateProductQuantity(product);
   }
 
   removeProduct(product: IProduct) {

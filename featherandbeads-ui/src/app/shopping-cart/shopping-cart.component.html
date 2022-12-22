@@ -33,7 +33,9 @@
                     routerLink="/product/{{ product.id }}">
                   {{ product.name }}
                 </h5>
+
               </div>
+              <input type="number" [(ngModel)]="product.cartQuantity" (change)="updateProductQuantity(product)" />
             </div>
             <div class="col-4 text-end">
               <p class="text-primary text-bold" style="margin-top: 30px;">
@@ -57,7 +59,7 @@
 
     <!-- Summary -->
     <div class="col-md-5">
-      <div class="card border-0 rounded-0"  style="background: #f7f7f7;">
+      <div class="card border-0 rounded-0"  style="background: #fafafa;">
         <div class="card-header mt-2 bg-transparent border-0
              text-primary h4">
           Yhteenveto
@@ -70,30 +72,19 @@
               <h5 class="text-primary">
                 {{ product.name }}
               </h5>
+              x{{product.cartQuantity}}
             </div>
             <div class="col-4 text-end">
               <p class="text-primary text-bold">
-                {{product.priceWithTax| currency:'EUR':'symbol':'1.2-2':'fi'}}
+                {{(product.priceWithTax * product.cartQuantity) | currency:'EUR':'symbol':'1.2-2':'fi'}}
               </p>
             </div>
           </div>
-          <hr />
         </div>
        
-        <div class="card-footer bg-transparent border-0
-             text-primary">
-          <!--<div class="row">
-            <div class="col-6 text-start">
-              <h6 class="text-primary">
-                Tuotteet
-              </h6>
-            </div>
-            <div class="col-6 text-end">
-              <p class="text-primary">
-                {{getCartPrice() | currency:'EUR':'symbol':'1.2-2':'fi'}}
-              </p>
-            </div>
-          </div>-->
+        <div class="card-footer border-top-secondary rounded-0
+             text-primary" style="background: #f2f2f2;">
+
           <div class="row">
             <div class="col-6 text-start">
               <h6 class="text-primary" style="margin-top:5px;">

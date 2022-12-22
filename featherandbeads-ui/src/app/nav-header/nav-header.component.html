@@ -129,7 +129,7 @@
               type="button" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasCartNavbar" aria-controls="offcanvasCartNavbar">
         <i class="fa fa-shopping-bag"></i>
-        <span class="bag" *ngIf="products.length > 0">{{ products.length }}</span>
+        <span class="bag" *ngIf="products.length > 0">{{ getCartQuantity() }}</span>
       </button>
 
       <!-- SideNavbar -->
@@ -170,10 +170,11 @@
               <div class="col-7">
                 <p class="text-primary p" routerLink="/product/{{ product.id }}"
                    data-bs-dismiss="offcanvas">
-                  {{ product.name }}
+                  {{ product.name }}                 
                 </p>
+                <p> x{{product.cartQuantity}}</p>
                 <p class="text-primary" style="margin-bottom: 20px;">
-                  {{product.priceWithTax| currency:'EUR':'symbol':'1.2-2':'fi'}}
+                  {{(product.priceWithTax * product.cartQuantity) | currency:'EUR':'symbol':'1.2-2':'fi'}}
                 </p>
               </div>
 

@@ -7,6 +7,7 @@ export interface IProduct {
   priceWithTax: number;
   tax: number;
   quantity: number;
+  cartQuantity: number;
   removed: boolean;
   mainPhoto: IPhoto;
   photos: IPhoto[];
