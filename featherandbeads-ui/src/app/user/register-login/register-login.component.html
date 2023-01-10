@@ -26,7 +26,7 @@
             <form #loginForm="ngForm" autocomplete="off">
               <!-- Email -->
               <div class="mt-1">
-                <input type="email" class="form-control"
+                <input type="email" class="form-control border border-1 bg-light"
                        #email="ngModel" [(ngModel)]="model.email"
                        name="email" placeholder="Sähköpostiosoite" required
                        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
@@ -37,7 +37,7 @@
               </div>
               <!-- Password -->
               <div class="col-md-12 mt-4">
-                <input type="password" class="form-control"
+                <input type="password" class="form-control border border-1 bg-light"
                        #password="ngModel" placeholder="Salasana"
                        name="password" [(ngModel)]="model.password" required />
                 <p *ngIf="password.errors && password.touched && password.dirty"

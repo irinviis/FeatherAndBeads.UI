@@ -2,70 +2,15 @@
 <div class="container mt-5 mb-5" style="min-height: 50vh;">
 
   <!-- Button Back -->
-  <button class="btn btn-primary rounded-0" routerLink="/add-category">
+  <button class="btn btn-sm btn-primary rounded-0" routerLink="/add-category">
     <i class="fa fa-chevron-left" aria-hidden="true" style="margin-right: 8px;"></i>
     Takaisin
   </button>
 
   <div class="row mt-2" *ngIf="category">
 
-    <div class="col-6">
-
-      <!-- Edit information -->
-      <div class="text-primary">
-
-        <p *ngIf="category.isLoading">
-          Loading...
-        </p>
-
-        <!-- Edit Photo -->
-        <div *ngIf="!category.isLoading">
-
-          <!-- Photo -->
-          <div class="row mt-3" *ngIf="category.photo">
-
-              <img src="{{ category.photo.url }}"
-                   alt="{{ category.photo.url }}"
-                   class="img-fluid rounded-0 border-0">
-
-              <!-- Button Remove -->
-              <div class="mt-1">
-                <button class="btn btn-sm btn-outline-primary w-100 rounded-0 mt-2"
-                        (click)="removeCategoryPhoto(category.photo.id)">
-                  <i class="fa fa-trash-o"></i>
-                  Poista kuva
-                </button>
-              </div>
-          </div>
-
-          <!-- Image uploader -->
-          <div class="row mt-3">
-            <div class="col">
-              <input type="file" class="mt-3" (change)="addFileToCategory(category, $event)" />
-            </div>
-
-            <div class="col-12" style="margin-bottom: 40px">
-        
-
-              <!-- Button -->
-              <div class="d-flex justify-content-end mt-4">
-
-                <!-- Button upload -->
-                <button type="button" class="btn btn-sm btn-primary rounded-0 w-100"
-                        (click)="uploadCategoryPhoto(category)">
-                  <i class="fa fa-upload" aria-hidden="true"></i>
-                  Lataa kuva
-                </button>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Edit Description -->
-    <div class="col-6">
+    <div class="col-sm-12 col-md-12 col-lg-7">
 
       <form #editForm="ngForm" (ngSubmit)="updateCategory(category)">
 
@@ -89,6 +34,63 @@
       </form>
 
     </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-5">
+
+      <!-- Edit information -->
+      <div class="text-primary">
+
+        <p *ngIf="category.isLoading">
+          Loading...
+        </p>
+
+        <!-- Edit Photo -->
+        <div *ngIf="!category.isLoading">
+
+          <!-- Photo -->
+          <div class="row mt-3" *ngIf="category.photo">
+
+            <img src="{{ category.photo.url }}"
+                 alt="{{ category.photo.url }}"
+                 class="img-fluid rounded-0 border-0">
+
+            <!-- Button Remove -->
+            <div class="mt-1">
+              <button class="btn btn-sm btn-outline-primary w-100 rounded-0 mt-2"
+                      (click)="removeCategoryPhoto(category.photo.id)">
+                <i class="fa fa-trash-o"></i>
+                Poista kuva
+              </button>
+            </div>
+          </div>
+
+          <!-- Image uploader -->
+          <div class="row mt-3">
+            <div class="col">
+              <input type="file" class="mt-3" (change)="addFileToCategory(category, $event)" />
+            </div>
+
+            <div class="col-12" style="margin-bottom: 40px">
+
+
+              <!-- Button -->
+              <div class="d-flex justify-content-end mt-4">
+
+                <!-- Button upload -->
+                <button type="button" class="btn btn-sm btn-primary rounded-0 w-100"
+                        (click)="uploadCategoryPhoto(category)">
+                  <i class="fa fa-upload" aria-hidden="true"></i>
+                  Lataa kuva
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>
 

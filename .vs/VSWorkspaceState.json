@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\featherandbeads-ui",
+    "\\featherandbeads-ui\\src",
+    "\\featherandbeads-ui\\src\\app",
+    "\\featherandbeads-ui\\src\\app\\info",
+    "\\featherandbeads-ui\\src\\app\\info\\security-info",
+    "\\featherandbeads-ui\\src\\app\\shared",
+    "\\featherandbeads-ui\\src\\app\\shared\\input",
+    "\\featherandbeads-ui\\src\\app\\user",
+    "\\featherandbeads-ui\\src\\app\\user\\register-login"
+  ],
+  "PreviewInSolutionExplorer": false
+}

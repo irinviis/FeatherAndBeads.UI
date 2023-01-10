@@ -73,8 +73,11 @@ export class ProductService {
   }
 
   removeProduct(product: IProduct) {
-    debugger
     return this.http.post(this.baseUrl + 'Product/remove-product', product);
+  }
+
+  returnProduct(product: IProduct) {
+    return this.http.post(this.baseUrl + 'Product/return-product', product);
   }
 
   setMainPhoto(phId: number, prodId: number) {

@@ -9,6 +9,8 @@ export class CartService {
   storageKey: string = "cart";
   products: IProduct[] = [];
   @Output() HasUpdates = new EventEmitter();
+  alert = false;
+  alertMsg = '';
 
   constructor(
     private productService: ProductService
@@ -23,6 +25,15 @@ export class CartService {
     return price;
   }
 
+  calculateTax(): number {
+    var tax: number = 0;
+
+    this.products.forEach((product) => {
+      tax += product.tax * product.cartQuantity;      
+    })
+    return tax;
+  }
+
   getCartQuantity(): number {
     var quantity: number = 0;
 
@@ -32,7 +43,14 @@ export class CartService {
     return quantity;
   }
 
-
+  countProductInCart(product: IProduct): number {
+    var productCount: number = 0;
+    var productInCart = this.products.find(p => p.id === product.id);
+    if (productInCart) {
+      productCount = productInCart.cartQuantity;
+    }
+    return productCount;
+  }
 
   addToCart(product: IProduct) {
     var existingProduct = this.products.find(p => p.id === product.id);
@@ -44,7 +62,7 @@ export class CartService {
             existingProduct.cartQuantity++;
           }
           else {
-            alert("Tuotteita ei voi lisätä enemmän kuin " + saldo);
+            alert;
           }
         }
         else {
@@ -81,7 +99,7 @@ export class CartService {
         if (saldo > 0) {
 
           if (product.cartQuantity > saldo) {
-            alert(`Tuotetta ${product.name} on saatavilla enintään ${saldo}.`);
+            alert;
             existingProduct.cartQuantity = saldo;
           }
           else if (product.cartQuantity === 0)

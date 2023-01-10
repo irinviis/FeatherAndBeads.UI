@@ -3,14 +3,80 @@
 <div class="container mt-5 mb-5" style="min-height: 50vh;">
 
   <!-- Button Back -->
-  <button class="btn btn-primary rounded-0" routerLink="/add-product">
+  <button class="btn btn-sm btn-primary rounded-0" routerLink="/add-product">
     <i class="fa fa-chevron-left" aria-hidden="true" style="margin-right: 8px;"></i>
     Takaisin
   </button>
 
   <div class="row mt-2" *ngIf="product">
 
-    <div class="col-6">
+    <!-- Edit Description -->
+    <div class="col-sm-12 col-md-12 col-lg-7">
+
+      <form #editForm="ngForm" (submit)="updateProduct(product)">
+        <!-- Select Category -->
+        <select multiple class="form-select mt-3" name="productCategories"
+                [(ngModel)]="product.productCategories">
+          <option *ngFor="let category of productCategories" [ngValue]="category.id">
+            {{ category.categoryName }}
+          </option>
+        </select>
+
+        <!-- Nimi -->
+        <input class="form-control  mt-3" name="name"
+               placeholder="Nimi" [(ngModel)]="product.name" />
+
+        <!-- PikaKuvaus -->
+        <textarea class="form-control  mt-3" rows="2"
+                  placeholder="Pikakuvaus" [(ngModel)]="product.shortDescription"
+                  name="shortDescription"></textarea>
+
+        <!-- Normaalikuvaus -->
+        <textarea class="form-control  mt-3" rows="2"
+                  placeholder="Normaalikuvaus" [(ngModel)]="product.longDescription"
+                  name="longDescription"></textarea>
+
+        <!-- Määrä -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="quantity">Määrä</span>
+          <input class="form-control mt-3" name="quantity" type="number"
+                 placeholder="Määrä" [(ngModel)]="product.quantity" aria-describedby="quantity" />
+        </div>
+
+        <!-- Kokonaishinta -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="price">Kokonaishinta</span>
+          <input class="form-control mt-3" name="priceWithTax" type="number"
+                 placeholder="Kokonaishinta" [(ngModel)]="product.priceWithTax" (change)="calculateTax()"
+                 aria-describedby="price" />
+        </div>
+
+        <!-- Hinta ilman ALV -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="withoutTax">
+            Hinta ilman ALV: 
+          </span>       
+          <span class="form-control mt-3">{{ product.priceWithoutTax | number:'1.2-2'}}</span>     
+        </div>
+
+        <!-- ALV -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="tax">ALV</span>
+          <span class="form-control mt-3">{{ product.tax | number:'1.2-2'}}</span>
+        </div>
+
+        <!-- Button -->
+        <div class="col d-flex justify-content-end mt-4">
+          <button type="submit"
+                  class="btn btn-sm btn-primary rounded-0 w-100">
+            Tallenna
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-5">
 
       <!-- Edit information -->
       <div class="text-primary">
@@ -88,40 +154,5 @@
       </div>
     </div>
 
-    <!-- Edit Description -->
-    <div class="col-6">
-
-      <form #editForm="ngForm" (submit)="updateProduct(product)">
-        <!-- Select Category -->
-        <select multiple class="form-select mt-3" name="productCategories"
-                [(ngModel)]="product.productCategories">
-          <option *ngFor="let category of productCategories" [ngValue]="category.id">
-            {{ category.categoryName }}
-          </option>
-        </select>
-
-        <!-- Nimi -->
-        <textarea class="form-control  mt-3" rows="1"
-                  placeholder="Nimi" [(ngModel)]="product.name"
-                  name="name"></textarea>
-        <!-- Kuvaus -->
-        <textarea class="form-control  mt-3" rows="4"
-                  placeholder="Kuvaus" [(ngModel)]="product.description"
-                  name="description"></textarea>
-
-        <!-- Hinta -->
-        <input class="form-control  mt-3" name="priceWithTax" type="number"
-                  placeholder="Hinta" [(ngModel)]="product.priceWithTax" />
-
-        <!-- Button -->
-        <div class="col d-flex justify-content-end mt-4">
-          <button type="submit"
-                  class="btn btn-sm btn-primary rounded-0 w-100">
-            Tallenna
-          </button>
-        </div>
-      </form>
-
-    </div>
   </div>
 </div>

@@ -28,12 +28,14 @@ import { AddProductComponent } from './user/add-product/add-product.component';
 import { EditProductComponent } from './user/edit-product/edit-product.component';
 import { OrdersComponent } from './user/orders/orders.component';
 import { RegisterLoginComponent } from './user/register-login/register-login.component';
-import { UserAccountComponent } from './user/user-account/user-account.component';
 import { EditCategoryComponent } from './user/edit-category/edit-category.component';
 import { SecurityInfoComponent } from './info/security-info/security-info.component';
 import { PaymentComponent } from './info/payment/payment.component';
 import { DeliveryReturnComponent } from './info/delivery-return/delivery-return.component';
 import { ContactComponent } from './info/contact/contact.component';
+import { UserOrdersComponent } from './user/user-orders/user-orders.component';
+import { UserInfoComponent } from './user/user-info/user-info.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,6 @@ import { ContactComponent } from './info/contact/contact.component';
     RegisterLoginComponent,
     ProductsComponent,
     InputComponent,
-    UserAccountComponent,
     NotFoundComponent,
     ShoppingCartComponent,
     NavHeaderComponent,
@@ -57,7 +58,10 @@ import { ContactComponent } from './info/contact/contact.component';
     SecurityInfoComponent,
     PaymentComponent,
     DeliveryReturnComponent,
-    ContactComponent
+    ContactComponent,
+    UserOrdersComponent,
+    UserInfoComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserAnimationsModule,

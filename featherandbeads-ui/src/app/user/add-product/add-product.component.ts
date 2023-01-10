@@ -15,6 +15,7 @@ export class AddProductComponent implements OnInit {
   products: IProduct[] = [];
   modalRef?: BsModalRef;
   productToRemove!: IProduct;
+  productToReturn!: IProduct;
   photoForProduct!: IProduct;
 
   constructor(
@@ -51,6 +52,17 @@ export class AddProductComponent implements OnInit {
       this.modalService.hide();
       this.getProducts();
     })
+  }
+
+  returnProduct(prodToReturn: IProduct) {
+    this.productService.returnProduct(prodToReturn).subscribe(() => {
+      this.getProducts();
+    })
+  }
+
+  calculateTax() {
+    this.newProduct.priceWithoutTax = this.newProduct.priceWithTax / 1.24;
+    this.newProduct.tax = this.newProduct.priceWithTax - this.newProduct.priceWithoutTax;
   }
 
   openModal(template: TemplateRef<any>) {

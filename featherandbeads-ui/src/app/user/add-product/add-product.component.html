@@ -2,7 +2,7 @@
 <div class="container mt-5 mb-5" style="min-height: 50vh;">
 
   <!-- Button add product -->
-  <button class="btn btn-primary rounded-0" (click)="openModal(template)">
+  <button class="btn btn-sm btn-primary rounded-0" (click)="openModal(template)">
     <i class="fa fa-plus" aria-hidden="true" style="margin-right: 8px;"></i>
     Lisää tuote
   </button>
@@ -31,17 +31,47 @@
                   placeholder="Nimi" [(ngModel)]="newProduct.name"
                   name="name"></textarea>
 
-        <!-- Kuvaus -->
+        <!-- Pikakuvaus -->
         <textarea class="form-control  mt-3" rows="1"
-                  placeholder="Kuvaus" [(ngModel)]="newProduct.description"
-                  name="description"></textarea>
+                  placeholder="Pikakuvaus" [(ngModel)]="newProduct.shortDescription"
+                  name="shortDescription"></textarea>
 
-        <!-- Hinta -->
-        <input class="form-control  mt-3" name="priceWithTax" type="number"
-               placeholder="Hinta" [(ngModel)]="newProduct.priceWithTax" />
+        <!-- Normaalikuvaus -->
+        <textarea class="form-control  mt-3" rows="1"
+                  placeholder="Normaalikuvaus" [(ngModel)]="newProduct.longDescription"
+                  name="longDescription"></textarea>
+
+        <!-- Määrä -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="quantity">Määrä</span>
+          <input class="form-control mt-3" name="quantity" type="number"
+                 placeholder="Määrä" [(ngModel)]="newProduct.quantity" aria-describedby="quantity" />
+        </div>
+
+        <!-- Kokonaishinta -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="price">Kokonaishinta</span>
+          <input class="form-control mt-3" name="priceWithTax" type="number"
+                 placeholder="Kokonaishinta" [(ngModel)]="newProduct.priceWithTax" (change)="calculateTax()"
+                 aria-describedby="price" />
+        </div>
+
+        <!-- Hinta ilman ALV -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="withoutTax">
+            Hinta ilman ALV:
+          </span>
+          <span class="form-control mt-3">{{ newProduct.priceWithoutTax | number:'1.2-2'}}</span>
+        </div>
+
+        <!-- ALV -->
+        <div class="input-group mb-3">
+          <span class="input-group-text mt-3 rounded-0" id="tax">ALV</span>
+          <span class="form-control mt-3">{{ newProduct.tax | number:'1.2-2'}}</span>
+        </div>
       </form>
     </div>
-    <!--Buttons-->
+    <!--Button-->
     <div class="modal-footer">
       <button type="button" class="btn btn-primary rounded-0" (click)="addProduct()"
               form="addProduct">
@@ -56,7 +86,6 @@
     <!--Products-->
     <div class="col" *ngFor="let product of products">
       <h5 class="text-primary text-center h5 text-semibold"
-          routerLink="/edit-product/{{ product.id }}"
           style="margin-top: 15px;">
         {{ product.name }}
       </h5>
@@ -65,21 +94,27 @@
       </h5>
       <div class="card mt-3 border-0">
         <img src="{{ product.mainPhoto?.url || '/assets/placeholder.webp'}}"
-             class="d-block" routerLink="/edit-product/{{ product.id }}">
+             class="d-block">
       </div>
 
       <!-- Buttons -->
       <button class="btn btn-sm btn-primary mt-3 w-100 rounded-0"
-              routerLink="/edit-product/{{ product.id }}">
+              routerLink="/edit-product/{{ product.id }}" [disabled]="product.removed">
         <i class="fa fa-pencil" aria-hidden="true"></i>
         Muokkaa tuotetta
       </button>
 
       <div class="mt-3">
         <button class="btn btn-sm btn-outline-primary w-100 rounded-0"
-                (click)="openModal2(template2, product)">
+                (click)="openModal2(template2, product)" *ngIf="!product.removed">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
           Poista tuote
+        </button>
+
+        <button class="btn btn-sm btn-outline-primary w-100 rounded-0"
+                (click)="returnProduct(product)" *ngIf="product.removed">
+          <i class="fa fa-undo" aria-hidden="true"></i>
+          Palauta tuote
         </button>
 
         <!-- Remove product modal -->

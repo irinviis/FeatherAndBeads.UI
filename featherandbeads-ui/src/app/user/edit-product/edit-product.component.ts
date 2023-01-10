@@ -43,6 +43,12 @@ export class EditProductComponent implements OnInit {
     })
   }
 
+  calculateTax() {
+    this.product.priceWithoutTax = this.product.priceWithTax / 1.24;
+    this.product.tax = this.product.priceWithTax - this.product.priceWithoutTax;
+  }
+
+
   updateProduct(productToUpdate: IProduct) {
     this.productService.updateProduct(productToUpdate).subscribe(() => {
       this.getProduct();

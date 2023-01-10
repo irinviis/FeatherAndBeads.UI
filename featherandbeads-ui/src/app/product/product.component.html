@@ -1,20 +1,17 @@
 
 <div class="container mt-3 mb-5" style="min-height: 50vh;">
 
-  <!-- Alert message -->
-  <div *ngIf="showAlert" class="toast show rounded-0 text-bg-success" role="alert"
-       style="position: absolute; top:100px;"
-       aria-live="assertive" aria-atomic="true">
-    <div class="toast-body">
-      {{ alertMsg }}
-    </div>
+  <!-- Alert msg -->
+  <div class="alert alert-dismissible alert-danger text-center rounded-0" *ngIf="alert">
+    <i class="fa fa-exclamation-triangle" style="margin-right: 8px;" aria-hidden="true"></i>
+    <strong>{{alertMsg}}</strong>
   </div>
 
 
   <div class="row row-cols-1 row-cols-md-2 g-4 mt-2" *ngIf="product">
 
     <!-- Product Images -->
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-12 col-lg-6">
       <div class="card mt-2 border-0">
         <gallery *ngIf="productPhotos.length > 0" [items]="productPhotos"
                  thumbsOrientation="bottom"></gallery>
@@ -22,26 +19,37 @@
     </div>
 
     <!-- Product Description -->
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-12 col-lg-6">
       <div class="card mt-1 h-100 border-0">
         <div class="card-body text-center">
           <h4 class="card-title text-primary">{{ product.name }}</h4>
           <p class="card-text fs-5">
-            {{ product.description }}
+            {{ product.shortDescription }}
           </p>
         </div>
         <div class="card-footer border-0" style="background-color: #ffffff;">
-          <h4 class="text-primary text-center">
+          <h4 class="text-primary text-center" style="margin-bottom:20px;">
             {{ product.priceWithTax | currency:'EUR':'symbol':'1.2-2':'fi' }}
           </h4>
 
+          <p class="text-primary text-center">Saatavilla: {{ product.quantity }} kpl</p>
+
+          <!-- Alert msg -->
+          <div class="alert alert-success rounded-0 text-center"
+               role="alert"
+               *ngIf="countProductInCart(product) > 0">
+            <i class="fa fa-check" style="margin-right: 3px;" aria-hidden="true"></i>
+            Lisätty ostoskoriin {{countProductInCart(product)}} kpl
+          </div>
+
           <!-- Button -->
-          <button class="btn btn-primary rounded-0 w-100 mt-4"
+          <button class="btn btn-primary rounded-0 w-100" style="height: 60px;"
                   (click)="addToCart(product)">
-            <i class="fa fa-shopping-basket" style="margin-right: 8px;"
+            <i class="fa fa-shopping-bag" style="margin-right: 8px;"
                aria-hidden="true"></i>
             Lisää ostoskoriin
           </button>
+
         </div>
       </div>
     </div>

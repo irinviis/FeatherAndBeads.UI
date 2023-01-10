@@ -1,6 +1,7 @@
 <!-- Input form -->
 <input [formControl]="control" [type]="type"
-       class="form-control" [placeholder]="placeholder"/>
+       class="form-control border border-1 bg-light"
+       [placeholder]="placeholder"/>
 
 <ng-container *ngIf="control.touched && control.dirty">
   <p *ngIf="control.errors?.['pattern']"

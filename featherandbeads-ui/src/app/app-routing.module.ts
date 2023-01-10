@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { UserAccountComponent } from './user/user-account/user-account.component';
 import { RegisterLoginComponent } from './user/register-login/register-login.component';
 import { AddProductComponent } from './user/add-product/add-product.component';
 import { AddCategoryComponent } from './user/add-category/add-category.component';
@@ -17,6 +16,9 @@ import { SecurityInfoComponent } from './info/security-info/security-info.compon
 import { PaymentComponent } from './info/payment/payment.component';
 import { DeliveryReturnComponent } from './info/delivery-return/delivery-return.component';
 import { ContactComponent } from './info/contact/contact.component';
+import { UserInfoComponent } from './user/user-info/user-info.component';
+import { UserOrdersComponent } from './user/user-orders/user-orders.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 let routes: Routes = [
@@ -41,6 +43,10 @@ let routes: Routes = [
     component: ShoppingCartComponent
   },
   {
+    path: 'checkout',
+    component: CheckoutComponent
+  },
+  {
     path: 'security',
     component: SecurityInfoComponent
   },
@@ -62,8 +68,12 @@ let routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'user-account',
-        component: UserAccountComponent
+        path: 'user-info',
+        component: UserInfoComponent
+      },
+      {
+        path: 'user-orders',
+        component: UserOrdersComponent
       },
       {
         path: 'add-product',

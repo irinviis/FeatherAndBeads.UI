@@ -5,3 +5,23 @@ img {
 .h {
   cursor: pointer;
 }
+
+input {
+  outline: none;
+  text-align: center;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-m {
+  outline: none;
+  text-align: center;
+  width: 5px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -3,8 +3,10 @@ import { IPhoto } from "./photo.model";
 export interface IProduct {
   id: number;
   name: string;
-  description: string;
+  shortDescription: string;
+  longDescription: string;
   priceWithTax: number;
+  priceWithoutTax: number;
   tax: number;
   quantity: number;
   cartQuantity: number;
