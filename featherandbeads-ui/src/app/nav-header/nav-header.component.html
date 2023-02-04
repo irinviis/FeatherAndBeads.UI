@@ -1,19 +1,20 @@
 
 <!-- Header Navbar -->
-  <div class="container pt-4 pb-4">
+<div class=" bg-primary">
+  <div class="container pt-4 pb-5">
 
     <div class="row">
 
       <!--Logo-->
       <div class="col">
-        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1670164700/FeatherAndBeads/Logo_n5ntys.png"
-             routerLink="/" alt="Feather&Beads" height="40">
+        <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1675261905/FeatherAndBeads/Logo_white_dj8oqu.png"
+             routerLink="/" alt="Feather&Beads" height="68">
       </div>
 
       <!-- Search form -->
       <div class="col-6">
         <div class="input-group mb-3">
-          <button class="btn rounded-0 border-0" style="background-color: #989898;"
+          <button class="btn rounded-0 border-0" style="background-color: #e1e1df; "
                   type="button" id="button-addon2">
             <i class="fa fa-search text-white" aria-hidden="true"></i>
           </button>
@@ -28,10 +29,10 @@
           <!--SideNavbar Login/Register-->
           <!-- Button -->
           <button *ngIf="!(accountService.currentUser$ | async)"
-                  class="bg-light text-primary border-0 rounded-0 px-0"
+                  class="bg-primary text-light border-0 rounded-0 px-0"
                   data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasLoginNavbar">
-            <i class="fa fa-user fa-lg"></i>
+            <i class="fa fa-user fa-lg" style="color: #e1e1df"></i>
           </button>
 
           <!-- SideNavbar -->
@@ -78,11 +79,11 @@
           <!--SideNavbar UserAccount-->
           <!-- Button -->
           <button *ngIf="accountService.currentUser$ | async"
-                  class="bg-light px-0 text-primary border-0 rounded-0 position-relative"
+                  class="bg-primary text-light px-0 border-0 rounded-0 position-relative"
                   data-bs-toggle="offcanvas" type="button"
                   data-bs-target="#offcanvasUserNavbar" aria-controls="offcanvasUserNavbar">
 
-            <i class="fa fa-user fa-lg"></i>
+            <i class="fa fa-user fa-lg" style="color: #e1e1df"></i>
             <span class="position-absolute top-100 start-100 translate-middle
                   p-2 bg-success border border-light rounded-circle">
             </span>
@@ -118,7 +119,7 @@
                   <li class="nav-item">
                     <a class="nav-link" routerLink="/add-category"
                        data-bs-dismiss="offcanvas">
-                      <i class="fa fa-cubes" aria-hidden="true" ></i>
+                      <i class="fa fa-cubes" aria-hidden="true"></i>
                       Ryhmät(admin)
                     </a>
                   </li>
@@ -164,13 +165,13 @@
 
           <!--SideNavbar ShoppingCart-->
           <!-- Button -->
-          <button class="border-0 bg-light position-relative"
+          <button class="border-0 bg-primary text-light position-relative"
                   data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasCartNavbar">
-            <i class="fa fa-shopping-bag fa-lg"></i>
+            <i class="fa fa-shopping-bag fa-lg" style="color: #e1e1df"></i>
             <span class="position-absolute top-100 start-100 translate-middle
                   badge rounded-circle bg-success" *ngIf="products.length > 0">
-            {{ getCartQuantity() }}
+              {{ getCartQuantity() }}
             </span>
           </button>
 
@@ -207,7 +208,7 @@
                   <div class="col-3 text-start">
                     <img src="{{ product.mainPhoto.url }}" data-bs-dismiss="offcanvas"
                          alt="Feather&Beads" routerLink="/product/{{ product.id }}"
-                         width="80" height="80" />
+                         width="70" height="90" />
                   </div>
 
                   <div class="col text-start">
@@ -266,4 +267,4 @@
       </div>
     </div>
   </div>
-
+</div>

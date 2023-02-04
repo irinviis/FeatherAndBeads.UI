@@ -13,6 +13,8 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(): Observable<boolean> {
+    this.accountService.verifyUser()
+
     return this.accountService.currentUser$.pipe(
       map(user => {
         if (user) {
@@ -21,6 +23,6 @@ export class AuthGuard implements CanActivate {
           return false;
         }
       })
-    );
+    );  
   }
 }

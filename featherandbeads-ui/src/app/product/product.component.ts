@@ -13,6 +13,7 @@ import { CartService } from '../services/cart.service';
 export class ProductComponent implements OnInit {
   product: IProduct = <IProduct>{};
   productId: number = 0;
+  /*galleryOptions: NgxGalleryOptions[] = [];*/
   productPhotos: GalleryImage[] = [];
   alert = false;
   alertMsg = '';
@@ -25,6 +26,27 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProduct();
+    //this.galleryOptions = [
+    //  {
+    //    width: '100%',
+    //    height: '850px',
+    //    thumbnailsColumns: 3,
+    //    imageAnimation: NgxGalleryAnimation.Slide
+    //  },
+    //  //{
+    //  //  breakpoint: 400,
+    //  //  width: '100%',
+    //  //  height: '300px',
+    //  //  imagePercent: 100,
+    //  //  thumbnailsPercent: 20,
+    //  //  thumbnailsMargin: 20,
+    //  //  thumbnailMargin: 20
+    //  //},
+    //  {
+    //    breakpoint: 400,
+    //    preview: false
+    //  }
+    //];
   }
 
   getProduct() {
@@ -34,7 +56,6 @@ export class ProductComponent implements OnInit {
     }
     this.productService.getProduct(this.productId).subscribe(product => {
       this.product = product;
-
       this.productPhotos = [];
       this.product.photos.forEach((f) => {
         this.productPhotos.push(new GalleryImage(f.url, f.url));

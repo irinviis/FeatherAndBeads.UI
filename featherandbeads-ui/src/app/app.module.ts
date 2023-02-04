@@ -36,6 +36,7 @@ import { ContactComponent } from './info/contact/contact.component';
 import { UserOrdersComponent } from './user/user-orders/user-orders.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { NavImageComponent } from './nav-image/nav-image.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ContactComponent,
     UserOrdersComponent,
     UserInfoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    NavImageComponent
   ],
   imports: [
     BrowserAnimationsModule,

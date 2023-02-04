@@ -15,6 +15,22 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
+  verifyUser() {
+    const address = this.baseUrl + `userAccount/verifyUser`
+
+
+    //this.http.post<boolean>(address, user).pipe(
+    //  map((verified: boolean) => {
+    //    if (!verified) {
+    //      this.logout()
+    //      window.location.reload();
+    //    }
+    //  })
+    //);
+
+
+  }
+
   register(userModel: IUser) {
     return this.http.post<IUser>(this.baseUrl + 'userAccount/register', userModel).pipe(
       map((user: IUser) => {

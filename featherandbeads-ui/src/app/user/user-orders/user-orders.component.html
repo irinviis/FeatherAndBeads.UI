@@ -1,37 +1,41 @@
 
 <div class="container mt-3 mb-5" style="min-height: 50vh;">
 
+  {{orders | json}}
+  {{orderProducts | json}}
+
   <h3 class="text-primary mt-5">Viimeiset tilauksesi</h3>
 
   <div class="row row-cols-1 row-cols-md-1 g-4">
-    <div class="col">
+    <!--*ngIf="orders.length > 0"-->
+    <div class="col" *ngFor="let order of orders">
       <div class="card border-0 mt-5">
         <div class="card-header  bg-transparent text-primary h4">
-          Tilausnumero: DEC151222
+          Tilausnumero: {{order.orderNumber}}
         </div>
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="text-primary">
               <h5>Tilauspvm</h5>
-              <p>15.12.2022</p>
+              <p>{{order.orderDate | date: 'dd MMM yyyy'}}</p>
             </div>
 
             <div class="text-primary">
               <h5>Maksu</h5>
-              <p>42,50</p>
+              <p>{{order.cost}}</p>
             </div>
 
             <div class="text-primary">
-              <h5>Toimitus</h5>
-              <p>Toimitettu</p>
+              <h5>Lähetetty</h5>
+              <p>{{order.deliveredDate | date: 'dd MMM yyyy'}}</p>
             </div>
           </div>
 
           <div class="row row-cols-1 row-cols-3 g-4">
-            <div class="col">
+            <div class="col" *ngFor="let orderProduct of orderProducts">
               <div class="card mt-4 border-0">
 
-                <img src="https://res.cloudinary.com/dimaaqsih/image/upload/v1672311267/dgeep9e1jeyslp1e3fzd.jpg">
+                <img src="{{orderProduct.mainPhoto.url}}">
 
               </div>
 
@@ -61,7 +65,7 @@
 
               <div class="d-flex justify-content-center" style="margin-top: 25px;">
                 <h6 class="text-primary text-semibold">
-                  1 x 
+                  1 x
                 </h6>
               </div>
 

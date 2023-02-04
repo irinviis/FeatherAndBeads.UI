@@ -8,22 +8,25 @@
   </div>
 
 
-  <div class="row row-cols-1 row-cols-md-2 g-4 mt-2" *ngIf="product">
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-3 mb-2" *ngIf="product">
 
     <!-- Product Images -->
     <div class="col-sm-12 col-md-12 col-lg-6">
-      <div class="card mt-2 border-0">
+      <div class="card rounded-0" style="border-color: #f6f6f6">
         <gallery *ngIf="productPhotos.length > 0" [items]="productPhotos"
-                 thumbsOrientation="bottom"></gallery>
+                 [thumbs]=false></gallery>
       </div>
     </div>
 
     <!-- Product Description -->
     <div class="col-sm-12 col-md-12 col-lg-6">
-      <div class="card mt-1 h-100 border-0">
-        <div class="card-body text-center">
+      <div class="card h-100 border-0">
+        <div class="card-header bg-transparent border-0 text-center">
           <h4 class="card-title text-primary">{{ product.name }}</h4>
-          <p class="card-text fs-5">
+        </div>
+        <div class="card-body">
+
+          <p class="card-text fs-5 lh-lg">
             {{ product.shortDescription }}
           </p>
         </div>
@@ -52,7 +55,52 @@
 
         </div>
       </div>
-    </div>
 
+      
+    </div>
   </div>
-</div>
+
+
+
+  <div class="row row-cols-1 row-cols-md-1 " *ngIf="product">
+
+    <div class="col-sm-12 col-md-12 col-lg-6"></div>
+
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        
+          <p class="text-primary mt-4" style="margin-left: 20px;">
+            <i class="fa fa-globe text-primary"
+               style="margin-right: 5px;" aria-hidden="true"></i>
+            Valmistettu käsityönä Suomessa
+          </p>
+        
+          <p class="text-primary mt-4" style="margin-left: 20px;">
+            <i class="fa fa-truck text-primary" 
+               style="margin-right: 5px;" aria-hidden="true"></i>
+            Nopeat toimitukset
+          </p>
+        
+          <p class="text-primary mt-4" style="margin-left: 20px;">
+            <i class="fa fa-undo text-primary"
+               style="margin-right: 5px;" aria-hidden="true"></i>
+            14 päivän palautusoikeus
+          </p>
+        
+      </div>
+  </div>
+
+  <hr class="text-primary mt-5" />
+
+    <!-- Long Description -->
+    <div class="row row-cols-1 row-cols-md-1 g-4" *ngIf="product">
+
+      <div class="col-sm-12 col-md-12 ">
+        <div class="card h-100 border-0">
+          <div class="card-body">
+            <p class="text-primary lh-lg">{{ product.longDescription }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
